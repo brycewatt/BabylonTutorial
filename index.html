@@ -59,12 +59,12 @@
                 // Default intensity is 1. Let's dim the light a small amount
                 light.intensity = 0.7;
                 // Our built-in 'sphere' shape. Params: name, options, scene
-                var box = BABYLON.MeshBuilder.CreateBox("box", {size: 1}, scene);
+                var box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
                 // Move the box upward 1/2 its height
                 box.position.y = 0.5;
                 // Our built-in 'ground' shape. Params: name, options, scene
                 var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
-                var sound = new BABYLON.Sound("Music", "https://www.babylonjs-playground.com/scenes/box.mp3", scene, null, { loop: true, autoplay: true });
+                var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
                 setInterval(() => sound.play(), 3000);
                 return scene;
             }
