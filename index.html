@@ -64,10 +64,11 @@
                 box.position.y = 0.75;
                 box.rotation.y = BABYLON.Tools.ToRadians(45);
                 // add a roof
-                var roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 2.5, height: 1, tessellation: 4}, scene);            
-                // roof.scaling.x = 0.75;
-                // roof.rotation.z = Math.PI / 2;
-                // roof.position.y = 1.22;
+                var roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 3, height: 3.2, tessellation: 3}, scene);            
+                roof.scaling.x = 0.5;
+                roof.rotation.y = BABYLON.Tools.ToRadians(135);
+                roof.rotation.z = Math.PI / 2;
+                roof.position.y = 1.875;
                 // Our built-in 'ground' shape. Params: name, options, scene
                 var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
                 // var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
