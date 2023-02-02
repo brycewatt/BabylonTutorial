@@ -65,7 +65,7 @@
                 // Our built-in 'ground' shape. Params: name, options, scene
                 var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
                 var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
-                setInterval(() => sound.play(), 3000);
+                // setInterval(() => sound.play(), 3000);
                 return scene;
             }
         }
