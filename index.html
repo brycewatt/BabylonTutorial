@@ -71,8 +71,21 @@
                 roof.position.y = 1.875;
                 // Our built-in 'ground' shape. Params: name, options, scene
                 var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
-                // var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
-                // setInterval(() => sound.play(), 3000);
+
+                // texture and color
+                // ground texture
+                var groundMat = new BABYLON.StandardMaterial("groundMat", scene);
+                groundMat.diffuseColor = BABYLON.Color3.Green();
+                ground.material = groundMat;
+                // roof texture
+                var roofMat = new BABYLON.StandardMaterial("roofMat", scene);
+                roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
+                roof.material = roofMat;
+                // box texture
+                var boxMat = new BABYLON.StandardMaterial("boxMat", scene);
+                boxMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs-playground.com/textures/floor.png", scene);
+                box.material = boxMat;
+                
                 return scene;
             }
         }
