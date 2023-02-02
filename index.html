@@ -55,16 +55,17 @@
                 // This attaches the camera to the canvas
                 camera.attachControl(canvas, true);
                 // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-                var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+                var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
                 // Default intensity is 1. Let's dim the light a small amount
                 light.intensity = 0.7;
                 // Our built-in 'sphere' shape. Params: name, options, scene
-                var box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+                var box = BABYLON.MeshBuilder.CreateBox("box", {width: 2, height: 1.5, depth: 3}, scene);
                 // Move the box upward 1/2 its height
-                box.position.y = 0.5;
+                box.position.y = 0.75;
+                box.rotation.y = BABYLON.Tools.ToRadians(45);
                 // Our built-in 'ground' shape. Params: name, options, scene
                 var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
-                var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
+                // var sound = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
                 // setInterval(() => sound.play(), 3000);
                 return scene;
             }
