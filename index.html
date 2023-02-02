@@ -59,8 +59,7 @@
                 // Default intensity is 1. Let's dim the light a small amount
                 light.intensity = 0.7;
                 // Our built-in 'sphere' shape. Params: name, options, scene
-                // var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 2, segments: 32 }, scene);
-                var box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+                var box = BABYLON.MeshBuilder.CreateBox("box", {size: 1}, scene);
                 // Move the box upward 1/2 its height
                 box.position.y = 1;
                 // Our built-in 'ground' shape. Params: name, options, scene
