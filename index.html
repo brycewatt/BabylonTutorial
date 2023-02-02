@@ -61,9 +61,11 @@
                 // Our built-in 'sphere' shape. Params: name, options, scene
                 var box = BABYLON.MeshBuilder.CreateBox("box", {size: 1}, scene);
                 // Move the box upward 1/2 its height
-                box.position.y = 1;
+                box.position.y = 0.5;
                 // Our built-in 'ground' shape. Params: name, options, scene
-                var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
+                var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
+                var sound = new BABYLON.Sound("Music", "https://www.babylonjs-playground.com/scenes/box.mp3", scene, null, { loop: true, autoplay: true });
+                setInterval(() => sound.play(), 3000);
                 return scene;
             }
         }
