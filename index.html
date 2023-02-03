@@ -38,14 +38,9 @@
         </style>
     </head>
 <body>
-    <canvas id="renderCanvas" touch-action="none"></canvas>
+    <canvas id="renderCanvas"></canvas>
     <script>
         var canvas = document.getElementById("renderCanvas");
-
-        var engine = null;
-        var scene = null;
-        var sceneToRender = null;
-        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
 
         var startRenderLoop = function (engine, canvas) {
             engine.runRenderLoop(function () {
@@ -55,6 +50,10 @@
             });
         }
 
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
         class Playground {
             static CreateScene(engine, canvas) {
                 // This creates a basic Babylon Scene object (non-mesh)
@@ -78,7 +77,7 @@
                 detached_house.position.z = 2.5;
                 // build semi-detached house
                 var semi_house = buildHouse(2);
-                semi_house.rotation.y = Math.PI / 16;
+                semi_house.rotation.y = -Math.PI / 16;
                 semi_house.position.x = -4.5;
                 semi_house.position.z = 3;
                 var places = []; //each entry is an array [house type, rotation, x, z]
@@ -103,9 +102,9 @@
                 var houses = [];
                 for (var i = 0; i < places.length; i++) {
                     if (places[i][0] == 1)
-                        houses[i] = detached_house.createInstance("house" + i);
+                        houses.push(detached_house.createInstance("house" + i));
                     else
-                        houses[i] = semi_house.createInstance("house" + i);
+                        houses.push(semi_house.createInstance("house" + i));
                     houses[i].rotation.y = places[i][1];
                     houses[i].position.x = places[i][2];
                     houses[i].position.z = places[i][3];
@@ -169,26 +168,24 @@
             roof.position.y = 1.22;
             return roof;
         }
-
         createScene = function() { return Playground.CreateScene(engine, engine.getRenderingCanvas()); }
-            window.initFunction = async function() {
-                
-                
-                var asyncEngineCreation = async function() {
-                    try {
-                    return createDefaultEngine();
-                    } catch(e) {
-                    console.log("the available createEngine function failed. Creating the default engine instead");
-                    return createDefaultEngine();
+                window.initFunction = async function() {
+                    
+                    
+                    var asyncEngineCreation = async function() {
+                        try {
+                        return createDefaultEngine();
+                        } catch(e) {
+                        console.log("the available createEngine function failed. Creating the default engine instead");
+                        return createDefaultEngine();
+                        }
                     }
-                }
 
-                window.engine = await asyncEngineCreation();
-                if (!engine) throw 'engine should not be null.';
-                startRenderLoop(engine, canvas);
-                window.scene = createScene();
-            };
-            initFunction().then(() => {sceneToRender = scene                    
+                    window.engine = await asyncEngineCreation();
+        if (!engine) throw 'engine should not be null.';
+        startRenderLoop(engine, canvas);
+window.scene = createScene();};
+        initFunction().then(() => {sceneToRender = scene                    
         });
 
         // Resize
